@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>DockerProject</groupId>
-	<artifactId>DockerProject</artifactId>
+	<artifactId>SeleniumProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

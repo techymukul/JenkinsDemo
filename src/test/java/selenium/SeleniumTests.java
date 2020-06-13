@@ -1,26 +1,32 @@
-package docker;
+package selenium;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class DockerTests {
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SeleniumTests {
 	
 	WebDriver driver;
 	String appUrl = "https://www.google.com";
 	
 	@Parameters({ "browser" })
-	@BeforeMethod
-	public void beforeMethod(String browser) throws MalformedURLException
+	@BeforeTest
+	public void beforetest(String browser) throws MalformedURLException
 	{
 		System.out.println("Browser Name is:"+browser);
 		
@@ -34,7 +40,8 @@ public class DockerTests {
 			DesiredCapabilities cap = DesiredCapabilities.chrome();
 			options.merge(cap);
 			try {
-				driver = new RemoteWebDriver (new URL("http://0.0.0.0:4444/wd/hub"), options);
+		        WebDriverManager.chromedriver().setup();
+				driver = new ChromeDriver(options); 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,15 +55,16 @@ public class DockerTests {
 			options.setCapability("javascriptEnabled", "true");
 			DesiredCapabilities cap = DesiredCapabilities.firefox();
 			options.merge(cap);
-			driver = new RemoteWebDriver (new URL("http://localhost:4444/wd/hub"), options);
+	        WebDriverManager.firefoxdriver().setup();
+	        driver = new FirefoxDriver(options); 
 		}
 		
 		driver.get(appUrl);
 	
 	}
 	
-	@AfterMethod
-	public void afterMethod()
+	@AfterTest
+	public void afterTest()
 	{
 		driver.close();
 	}
@@ -65,23 +73,18 @@ public class DockerTests {
 	@Test
 	public void dockertest1() {
 	System.out.println("Inside First Test");
-	System.out.printf("Thread Id : %s%n", Thread.currentThread().getId());
-
 
 	}
 	
 	@Test
 	public void dockertest2() {
 		System.out.println("Inside second Test");
-		System.out.printf("Thread Id : %s%n", Thread.currentThread().getId());
-
 
 		}
 	
 	@Test
 	public void dockertest3() {
 		System.out.println("Inside third Test");
-		System.out.printf("Thread Id : %s%n", Thread.currentThread().getId());
 
        }
 	
