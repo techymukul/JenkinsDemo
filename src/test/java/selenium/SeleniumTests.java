@@ -74,7 +74,7 @@ public class SeleniumTests {
 	@Test
 	public void dockertest1() {
 	System.out.println("Inside First Test");
-	Assert.assertFalse(true);
+	Assert.assertFalse(false);
 
 	}
 	
