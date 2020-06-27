@@ -23,7 +23,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class SeleniumTests {
 	
 	WebDriver driver;
-	String appUrl = "https://www.google.com";
+	String app1Url = "https://www.flipkart.com";
+	String app2Url = "https://www.facebook.com";
+	String app3Url = "https://www.amazon.in";
+	
 	
 	@Parameters({ "browser" })
 	@BeforeTest
@@ -60,8 +63,6 @@ public class SeleniumTests {
 	        driver = new FirefoxDriver(options); 
 		}
 		
-		driver.get(appUrl);
-	
 	}
 	
 	@AfterTest
@@ -74,19 +75,21 @@ public class SeleniumTests {
 	@Test
 	public void dockertest1() {
 	System.out.println("Inside First Test");
-	Assert.assertFalse(false);
+	driver.get(app1Url);
 
 	}
 	
 	@Test
 	public void dockertest2() {
 		System.out.println("Inside second Test");
+		driver.get(app2Url);
 
 		}
 	
 	@Test
 	public void dockertest3() {
 		System.out.println("Inside third Test");
+		driver.get(app3Url);
 
        }
 	
